@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 
-export default function FloatingButton () {
+export default function FloatingButton ({ handler }) {
     return (
-        <View style={styles.botton}>
+        <TouchableOpacity onPress={handler} style={styles.botton}>
             <Text style={styles.icon}>+</Text>
-        </View>
+        </TouchableOpacity>
     )
 }

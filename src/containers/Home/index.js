@@ -1,12 +1,15 @@
-import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { View, Text, ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { styles } from './styles'
+import { Modalize } from 'react-native-modalize';
+import { stylesGlobal } from '../../styles'
 import Header from '../../components/Header'
 import CardCategory from '../../components/CardCategory'
 import TextStrong from '../../components/TextStrong'
 import TaskList from '../../components/TaskList'
 import FloatingButton from '../../components/FloatingButton'
-
+import CardTypeSaveTask from '../../components/CardTypeSaveTask'
+import AddTask from './ActionsViews/AddTask'
 
 const data = [
     {
@@ -35,7 +38,36 @@ const data = [
     },
 ]
 
+const INITIAL_HEIGHT_MODALIZE = 120
 export default function Home () {
+    const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
+    const [action, setAction] = useState(0)
+    const modalizeRef = useRef(null);
+
+    const onOpen = () => {
+        modalizeRef.current?.open();
+    };
+
+    const renderAction = (st) => {
+        switch (st) {
+            case 0:
+                return (
+                    <>
+                        <View>
+                            <CardTypeSaveTask handler={() => { setHeightModalize(600); setAction(1) }} text='Manual' icon='https://image.flaticon.com/icons/png/512/2554/2554339.png' />
+                        </View>
+                        <View>
+                            <CardTypeSaveTask handler={() => setAction(2)} text='Random' icon='https://image.flaticon.com/icons/png/512/138/138409.png' />
+                        </View>
+                    </>
+                )
+            case 1:
+                return (<AddTask handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close(); }} handlerBack={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE) }} />)
+            case 2:
+                return (<Text>1</Text>)
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.containerHeader}>
@@ -60,8 +92,13 @@ export default function Home () {
                     <TaskList data={data} />
                 </View>
 
-                <FloatingButton />
+                <FloatingButton handler={onOpen} />
             </View>
+            <Modalize snapPoint={100} modalHeight={heightModalize} ref={modalizeRef}>
+                <View style={stylesGlobal.flexRow}>
+                    {renderAction(action)}
+                </View>
+            </Modalize>
         </View>
     )
 }

@@ -4,6 +4,7 @@ export const stylesGlobal = StyleSheet.create({
     flexRow: {
         flexDirection: "row",
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 15
     }
 })

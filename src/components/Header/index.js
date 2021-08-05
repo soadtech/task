@@ -10,7 +10,7 @@ export default function Header () {
             <View style={styles.infoProfile}>
                 <View>
                     <Text style={styles.textInfoUser}>Hi <TextStrong size={25}>Fernando</TextStrong> </Text>
-                    <Text>You have <TextStrong>5</TextStrong> task</Text>
+                    <Text style={{ color: 'white' }}>You have <TextStrong>5</TextStrong> task</Text>
                 </View>
                 <Avatar />
             </View>
