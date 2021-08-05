@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import CardCategory from '../../components/CardCategory'
 import TextStrong from '../../components/TextStrong'
 import TaskList from '../../components/TaskList'
+import FloatingButton from '../../components/FloatingButton'
 
 
 const data = [
@@ -58,6 +59,8 @@ export default function Home () {
                 <View style={{ flex: 1, }}>
                     <TaskList data={data} />
                 </View>
+
+                <FloatingButton />
             </View>
         </View>
     )
