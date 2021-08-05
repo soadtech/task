@@ -3,7 +3,36 @@ import { View, Text, ScrollView } from 'react-native'
 import { styles } from './styles'
 import Header from '../../components/Header'
 import CardCategory from '../../components/CardCategory'
-import TextStrong from '../../components/TextStrong/TextStrong'
+import TextStrong from '../../components/TextStrong'
+import TaskList from '../../components/TaskList'
+
+
+const data = [
+    {
+        id: '1',
+        name: 'Ir al super',
+        description: 'Comprar una libra de arroz',
+        status: 1
+    },
+    {
+        id: '2',
+        name: 'Ir al super',
+        description: 'Comprar una libra de arroz',
+        status: 1
+    },
+    {
+        id: '3',
+        name: 'Ir al super',
+        description: 'Comprar una libra de arroz',
+        status: 1
+    },
+    {
+        id: '4',
+        name: 'Ir al super',
+        description: 'Comprar una libra de arroz',
+        status: 1
+    },
+]
 
 export default function Home () {
     return (
@@ -24,9 +53,11 @@ export default function Home () {
                     </ScrollView>
                 </View>
             </View>
-            <View style={{ flex: 0.8, marginTop: '20%', paddingHorizontal: 20 }}>
-                <Text>Recent task</Text>
-
+            <View style={{ flex: 1, marginTop: '20%', paddingHorizontal: 20 }}>
+                <Text style={{ fontSize: 23 }}>Recent task</Text>
+                <View style={{ flex: 1, }}>
+                    <TaskList data={data} />
+                </View>
             </View>
         </View>
     )

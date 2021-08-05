@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import Avatar from '../Avatar'
-import TextStrong from '../TextStrong/TextStrong'
+import TextStrong from '../TextStrong'
 import { styles } from './styles'
 
 export default function Header () {
