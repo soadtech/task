@@ -56,7 +56,7 @@ export default function Home () {
                 return (
                     <>
                         <View>
-                            <CardTypeSaveTask handler={() => { setHeightModalize(600); setAction(1) }} text='Manual' icon='https://image.flaticon.com/icons/png/512/2554/2554339.png' />
+                            <CardTypeSaveTask handler={() => { setHeightModalize(500); setAction(1) }} text='Manual' icon='https://image.flaticon.com/icons/png/512/2554/2554339.png' />
                         </View>
                         <View>
                             <CardTypeSaveTask handler={() => { setHeightModalize(200); setAction(2) }} text='Random' icon='https://image.flaticon.com/icons/png/512/138/138409.png' />
