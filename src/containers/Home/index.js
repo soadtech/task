@@ -41,7 +41,7 @@ const data = [
 ]
 
 const INITIAL_HEIGHT_MODALIZE = 140
-export default function Home () {
+export default function Home ({ navigation }) {
     const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
     const [action, setAction] = useState(0)
     const modalizeRef = useRef(null);
@@ -82,9 +82,9 @@ export default function Home () {
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ flex: 1, width: '100%' }}>
                         <CardCategory cant='14' icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
 
-                        <CardCategory cant='8' icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', 1)} cant='8' icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
 
-                        <CardCategory cant='6' icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', 2)} cant='6' icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
                     </ScrollView>
                 </View>
             </View>
