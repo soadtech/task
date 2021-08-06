@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { View, Text, ScrollView, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { styles } from './styles'
 import { Modalize } from 'react-native-modalize';
 import { stylesGlobal } from '../../styles'
 import Header from '../../components/Header'
+import HeaderMoalize from './ActionsViews/Header'
 import CardCategory from '../../components/CardCategory'
 import TextStrong from '../../components/TextStrong'
 import TaskList from '../../components/TaskList'
@@ -38,7 +39,7 @@ const data = [
     },
 ]
 
-const INITIAL_HEIGHT_MODALIZE = 120
+const INITIAL_HEIGHT_MODALIZE = 140
 export default function Home () {
     const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
     const [action, setAction] = useState(0)
@@ -62,7 +63,7 @@ export default function Home () {
                     </>
                 )
             case 1:
-                return (<AddTask handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close(); }} handlerBack={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE) }} />)
+                return (<AddTask st={st} handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close(); }} handlerBack={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE) }} />)
             case 2:
                 return (<Text>1</Text>)
         }
@@ -94,7 +95,8 @@ export default function Home () {
 
                 <FloatingButton handler={onOpen} />
             </View>
-            <Modalize snapPoint={100} modalHeight={heightModalize} ref={modalizeRef}>
+            <Modalize modalHeight={heightModalize} ref={modalizeRef}>
+                <HeaderMoalize state={action} handlerBack={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE) }} handlerClose={() => modalizeRef.current?.close()} />
                 <View style={stylesGlobal.flexRow}>
                     {renderAction(action)}
                 </View>
