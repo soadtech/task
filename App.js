@@ -6,13 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import routes from './src/routes';
 
-
 const Stack = createNativeStackNavigator();
 
 function App () {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
+      <Stack.Navigator initialRouteName='Loader' screenOptions={{
         headerShown: false
       }}>
         {routes.map(route => (

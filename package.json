@@ -17,7 +17,8 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-modalize": "^2.0.8",
     "react-native-safe-area-context": "^3.2.0",
-    "react-native-screens": "^3.5.0"
+    "react-native-screens": "^3.5.0",
+    "react-native-sqlite-storage": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
