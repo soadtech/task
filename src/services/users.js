@@ -7,12 +7,9 @@ export const User = {
 
     get: () =>
         new Promise(function (resolve, reject) {
-            console.log('llego')
             db.transaction((tx) => {
-                console.log('llego x2');
                 tx.executeSql(queryUsers.getName, [], (tx, results) => {
-                    console.log('Aki ->', results.rows);
-                    resolve(results)
+                    resolve(results.rows.length > 0)
                 }, (error) => {
                     console.log(error)
                     reject(null, error)

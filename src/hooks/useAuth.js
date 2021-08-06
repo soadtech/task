@@ -7,11 +7,8 @@ const useAuth = () => {
 
     const getDataAuth = async () => {
         try {
-            console.log('llego aki');
             const data = await User.get();
-            console.log('llego aki x2');
-            console.log('dataaaaaa.', data)
-            if (data !== null) {
+            if (data) {
                 setAuthenticated(true);
                 setUser(data)
             }
