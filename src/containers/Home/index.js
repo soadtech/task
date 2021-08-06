@@ -11,6 +11,7 @@ import TaskList from '../../components/TaskList'
 import FloatingButton from '../../components/FloatingButton'
 import CardTypeSaveTask from '../../components/CardTypeSaveTask'
 import AddTask from './ActionsViews/AddTask'
+import AddTaskRandom from './ActionsViews/AddTaskRandom';
 
 const data = [
     {
@@ -58,14 +59,14 @@ export default function Home () {
                             <CardTypeSaveTask handler={() => { setHeightModalize(600); setAction(1) }} text='Manual' icon='https://image.flaticon.com/icons/png/512/2554/2554339.png' />
                         </View>
                         <View>
-                            <CardTypeSaveTask handler={() => setAction(2)} text='Random' icon='https://image.flaticon.com/icons/png/512/138/138409.png' />
+                            <CardTypeSaveTask handler={() => { setHeightModalize(200); setAction(2) }} text='Random' icon='https://image.flaticon.com/icons/png/512/138/138409.png' />
                         </View>
                     </>
                 )
             case 1:
                 return (<AddTask st={st} handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close(); }} handlerBack={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE) }} />)
             case 2:
-                return (<Text>1</Text>)
+                return (<AddTaskRandom />)
         }
     }
 
