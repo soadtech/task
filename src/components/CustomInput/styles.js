@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, dimensions } from "../../helpers/contants";
+import { colors } from "../../helpers/contants";
 
 export const styles = StyleSheet.create({
     container: {
@@ -7,4 +7,8 @@ export const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 10
     },
+    msjError: {
+        color: colors.primary,
+        fontWeight: 'bold'
+    }
 })

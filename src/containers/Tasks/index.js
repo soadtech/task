@@ -1,41 +1,17 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View } from 'react-native'
 import HeaderBack from '../../components/HeaderBack';
 import TaskList from '../../components/TaskList';
+import withTask from '../../hooks/withTask';
+import { Task } from '../../services/task';
+import { useRoute } from '@react-navigation/native'
 
-const data = [
-    {
-        id: '1',
-        name: 'Ir al super',
-        description: 'Comprar una libra de arroz',
-        status: 1
-    },
-    {
-        id: '2',
-        name: 'Ir al super',
-        description: 'Comprar una libra de arroz',
-        status: 1
-    },
-    {
-        id: '3',
-        name: 'Ir al super',
-        description: 'Comprar una libra de arroz',
-        status: 1
-    },
-    {
-        id: '4',
-        name: 'Ir al super',
-        description: 'Comprar una libra de arroz',
-        status: 1
-    },
-]
-
-export default function Tasks ({ route }) {
+const Tasks = ({ hanldeAction, tasks }) => {
     return (
         <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 20 }}>
             <HeaderBack />
-            <TaskList data={data} />
-
+            <TaskList hanldeAction={hanldeAction} data={tasks} />
         </View>
     )
 }
+export default withTask(Tasks)

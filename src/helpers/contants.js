@@ -10,3 +10,9 @@ export const colors = {
     primary: '#de3e50',
     whiteLight: '#fdf7f8ab'
 }
+
+export const typeTask = {
+    NEW: 1,
+    COMPLETE: 2,
+    FINISHED: 3
+}
