@@ -13,10 +13,13 @@ import CardTypeSaveTask from '../../components/CardTypeSaveTask'
 import AddTask from './ActionsViews/AddTask'
 import AddTaskRandom from './ActionsViews/AddTaskRandom';
 import { Task } from '../../services/task';
+import withTask from '../../hooks/withTask';
+import { useNavigation } from '@react-navigation/native';
 
 
 const INITIAL_HEIGHT_MODALIZE = 140
-export default function Home ({ navigation }) {
+const Home = ({ hanldeAction }) => {
+    const navigation = useNavigation()
     const [tasks, setTasks] = useState([])
     const [action, setAction] = useState(0)
     const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
@@ -79,7 +82,7 @@ export default function Home ({ navigation }) {
             <View style={{ flex: 1, marginTop: '20%', paddingHorizontal: 20 }}>
                 <Text style={{ fontSize: 23 }}>Recent task</Text>
                 <View style={{ flex: 1, }}>
-                    <TaskList data={tasks} />
+                    <TaskList hanldeAction={hanldeAction} data={tasks} />
                 </View>
 
                 <FloatingButton handler={onOpen} />
@@ -93,3 +96,4 @@ export default function Home ({ navigation }) {
         </View>
     )
 }
+export default withTask(Home)

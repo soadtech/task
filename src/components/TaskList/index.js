@@ -1,21 +1,21 @@
 import React from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import { styles } from './styles';
 
-export default function TaskList ({ data = [] }) {
+export default function TaskList ({ data = [], hanldeAction }) {
     return (
         <FlatList
             style={{ flex: 1 }}
             data={data}
             renderItem={({ item }) => (
-                <View key={item.id} style={styles.container}>
+                <TouchableOpacity onPress={hanldeAction} key={item.id} style={styles.container}>
                     <View>
                         <Text>{item.name}</Text>
                     </View>
                     <View style={{ justifyContent: 'flex-end' }}>
                         <Text>{item.type}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             )}
             keyExtractor={item => item.id}
             inverted={false}

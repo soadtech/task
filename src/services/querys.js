@@ -5,7 +5,7 @@ export const createTableUser = `CREATE TABLE IF NOT EXISTS users(
 
 export const createTableTask = `
   CREATE TABLE IF NOT EXISTS task(
-    id INTEGER(2) PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     name TEXT,
     description TEXT,
     type TEXT
