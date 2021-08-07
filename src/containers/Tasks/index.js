@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import HeaderBack from '../../components/HeaderBack';
 import TaskList from '../../components/TaskList';
+import withTask from '../../hooks/withTask';
 import { Task } from '../../services/task';
+import { useRoute } from '@react-navigation/native'
 
-export default function Tasks ({ route }) {
-    const [tasks, setTasks] = useState([])
-    const getTask = async () => {
-        const data = await Task.getByType(route.params)
-        setTasks(data)
-    }
-    useEffect(() => {
-        getTask()
-    }, [])
+const Tasks = ({ hanldeAction, tasks }) => {
     return (
         <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 20 }}>
             <HeaderBack />
-            <TaskList data={tasks} />
+            <TaskList hanldeAction={hanldeAction} data={tasks} />
         </View>
     )
 }
+export default withTask(Tasks)

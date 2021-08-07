@@ -41,6 +41,23 @@ export const Task = {
                 );
             });
         }),
+    getStats: () =>
+        new Promise(function (resolve, reject) {
+            db.transaction((tx) => {
+                tx.executeSql(
+                    queryTask.getStats,
+                    [],
+                    (tx, results) => {
+                        console.log(results.rows.raw());
+                        resolve(results.rows.raw())
+                    },
+                    (error) => {
+                        console.log('error', error);
+                        reject(null, error)
+                    },
+                );
+            });
+        }),
     getByType: (type) =>
         new Promise(function (resolve, reject) {
             db.transaction((tx) => {

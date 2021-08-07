@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import CardTypeSaveTask from '../components/CardTypeSaveTask';
-import CustomInput from '../components/CustomInput';
 import HeaderMoalize from '../containers/Home/ActionsViews/Header';
 import EditTask from '../containers/Tasks/components/EditTask';
 import { Task } from '../services/task';
@@ -10,6 +9,7 @@ import { Task } from '../services/task';
 const INITIAL_HEIGHT_MODALIZE = 140
 const withTask = (Component) => {
     function WrapperChildren (props) {
+        console.log('props', props.route.params);
         const [statistics, setStatistics] = useState({})
         const [action, setAction] = useState(0)
         const [tasks, setTasks] = useState([])
@@ -46,15 +46,24 @@ const withTask = (Component) => {
         }
 
         const getTask = async () => {
-            const data = await Task.get()
-            console.log(data);
-            setStatistics(data[0])
+            let data
+            if (props?.route?.params?.filter && props?.route?.params?.type !== 1) {
+                data = await Task.getByType(props?.route?.params?.type)
+            } else {
+                data = await Task.get()
+            }
+            const stat = await Task.getStats()
+            setStatistics(stat[0])
             setTasks(data)
         }
         useEffect(() => {
             getTask()
         }, [])
         const handlerCompleteTask = async () => {
+            if (taskSelected.type == 2) {
+                Alert.alert('The task has already been completed')
+                return
+            }
             await Task.completeTask(taskSelected.id)
             hiddenModal()
             getTask()
@@ -81,7 +90,7 @@ const withTask = (Component) => {
         }
         return (
             <>
-                <Component statistics={statistics} getTask={getTask} tasks={tasks} hanldeAction={hanldeAction} data={props.data} />
+                <Component statistics={statistics} setTasks={setTasks} getTask={getTask} tasks={tasks} hanldeAction={hanldeAction} data={props.data} />
                 <Modalize modalHeight={heightModalize} ref={modalizeRef}>
                     <View>
                         <HeaderMoalize state={0} handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close() }} />

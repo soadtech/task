@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { styles } from './styles'
 import { Modalize } from 'react-native-modalize';
@@ -12,7 +12,6 @@ import FloatingButton from '../../components/FloatingButton'
 import CardTypeSaveTask from '../../components/CardTypeSaveTask'
 import AddTask from './ActionsViews/AddTask'
 import AddTaskRandom from './ActionsViews/AddTaskRandom';
-import { Task } from '../../services/task';
 import withTask from '../../hooks/withTask';
 import { useNavigation } from '@react-navigation/native';
 
@@ -63,11 +62,11 @@ const Home = ({ hanldeAction, getTask, tasks, statistics }) => {
                         <TextStrong size={40}>Your task</TextStrong>
                     </View>
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ flex: 1, width: '100%' }}>
-                        <CardCategory handler={() => navigation.navigate('Tasks', 1)} cant={statistics.Total} icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', { type: 1, filter: true })} cant={statistics.Total} icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
 
-                        <CardCategory handler={() => navigation.navigate('Tasks', 2)} cant={statistics.Complete} icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', { type: 2, filter: true })} cant={statistics.Complete} icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
 
-                        <CardCategory handler={() => navigation.navigate('Tasks', 3)} cant={statistics.Finished} icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', { type: 3, filter: true })} cant={statistics.Finished} icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
                     </ScrollView>
                 </View>
             </View>
