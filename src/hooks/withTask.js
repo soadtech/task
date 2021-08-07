@@ -10,14 +10,15 @@ import { Task } from '../services/task';
 const INITIAL_HEIGHT_MODALIZE = 140
 const withTask = (Component) => {
     function WrapperChildren (props) {
+        const [statistics, setStatistics] = useState({})
         const [action, setAction] = useState(0)
         const [tasks, setTasks] = useState([])
         const [taskSelected, setTaskSelected] = useState([])
         const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
         const modalizeRef = useRef(null);
 
-        const hanldeAction = (taskId) => {
-            setTaskSelected(taskId)
+        const hanldeAction = (task) => {
+            setTaskSelected(task)
             modalizeRef.current?.open();
         }
         const hiddenModal = () => {
@@ -40,19 +41,21 @@ const withTask = (Component) => {
                         </>
                     )
                 case 1:
-                    return (<EditTask />)
+                    return (<EditTask taskSelected={taskSelected} getTask={getTask} handlerClose={hiddenModal} />)
             }
         }
 
         const getTask = async () => {
             const data = await Task.get()
+            console.log(data);
+            setStatistics(data[0])
             setTasks(data)
         }
         useEffect(() => {
             getTask()
         }, [])
         const handlerCompleteTask = async () => {
-            await Task.completeTask(taskSelected)
+            await Task.completeTask(taskSelected.id)
             hiddenModal()
             getTask()
         }
@@ -68,7 +71,7 @@ const withTask = (Component) => {
                     },
                     {
                         text: "Yes, delete this.", onPress: async () => {
-                            await Task.delete(taskSelected)
+                            await Task.delete(taskSelected.id)
                             hiddenModal()
                             getTask()
                         }
@@ -78,7 +81,7 @@ const withTask = (Component) => {
         }
         return (
             <>
-                <Component getTask={getTask} tasks={tasks} hanldeAction={hanldeAction} data={props.data} />
+                <Component statistics={statistics} getTask={getTask} tasks={tasks} hanldeAction={hanldeAction} data={props.data} />
                 <Modalize modalHeight={heightModalize} ref={modalizeRef}>
                     <View>
                         <HeaderMoalize state={0} handlerClose={() => { setAction(0); setHeightModalize(INITIAL_HEIGHT_MODALIZE); modalizeRef.current?.close() }} />

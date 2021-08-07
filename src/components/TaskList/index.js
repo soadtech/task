@@ -8,7 +8,7 @@ export default function TaskList ({ data = [], hanldeAction }) {
             style={{ flex: 1 }}
             data={data}
             renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => hanldeAction(item.id)} key={item.id} style={styles.container}>
+                <TouchableOpacity onPress={() => hanldeAction(item)} key={item.id} style={styles.container}>
                     <View>
                         <Text>{item.name}</Text>
                     </View>

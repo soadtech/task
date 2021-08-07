@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const INITIAL_HEIGHT_MODALIZE = 140
-const Home = ({ hanldeAction, getTask, tasks }) => {
+const Home = ({ hanldeAction, getTask, tasks, statistics }) => {
     const navigation = useNavigation()
     //const [tasks, setTasks] = useState([])
     const [action, setAction] = useState(0)
@@ -63,11 +63,11 @@ const Home = ({ hanldeAction, getTask, tasks }) => {
                         <TextStrong size={40}>Your task</TextStrong>
                     </View>
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ flex: 1, width: '100%' }}>
-                        <CardCategory handler={() => navigation.navigate('Tasks', 1)} cant='14' icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', 1)} cant={statistics.Total} icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
 
-                        <CardCategory handler={() => navigation.navigate('Tasks', 2)} cant='8' icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', 2)} cant={statistics.Complete} icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
 
-                        <CardCategory handler={() => navigation.navigate('Tasks', 3)} cant='6' icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
+                        <CardCategory handler={() => navigation.navigate('Tasks', 3)} cant={statistics.Finished} icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
                     </ScrollView>
                 </View>
             </View>

@@ -18,7 +18,19 @@ export const queryUsers = {
 }
 export const queryTask = {
   createTask: `INSERT INTO task (name,description,type) VALUES (?,?,?)`,
-  getAlltask: `SELECT * FROM task`,
+  getAlltask: `select rs.*, rs2.*, rs3.*, rstotal.*
+  from (
+    select count(*) as New from task where type = '1' 
+  )as rs,
+  (
+    select count(*) as Complete from task where type = '2' 
+  )as rs2,
+  (
+    select count(*) as Finished from task where type = '3' 
+  )as rs3,
+  (
+    select count(*) as Total from task
+  )as rsTotal`,
   updateTask: `UPDATE task SET description = ? WHERE id=?`,
   completeTask: `UPDATE task SET type = 2 WHERE id=?`,
   getTaskByType: `SELECT * FROM task WHERE type=?`,
