@@ -15,7 +15,8 @@ export default function EditTask ({ taskSelected, getTask, handlerClose }) {
     const { values, errors, handleSubmit, handleChange } = useValidator(INITIAL_STATE, validTask, handlerSubmit)
 
     async function handlerSubmit () {
-        await Task.updateTask(taskSelected.id)
+        console.log('taskSelected', taskSelected);
+        await Task.updateTask(values.description, taskSelected.id)
         handlerClose()
         getTask()
     }

@@ -93,15 +93,15 @@ export const Task = {
                 );
             });
         }),
-    updateTask: (id) =>
+    updateTask: (description, id) =>
         new Promise(function (resolve, reject) {
-            console.log('id', id);
+            console.log('id', description, id);
             db.transaction((tx) => {
                 tx.executeSql(
                     queryTask.updateTask,
-                    [id],
+                    [description, id],
                     (tx, results) => {
-                        console.log(results.rows.raw());
+                        console.log('aki se edita->', results);
                         resolve(results.rows.raw())
                     },
                     (error) => {
