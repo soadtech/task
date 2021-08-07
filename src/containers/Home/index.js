@@ -63,10 +63,7 @@ const Home = ({ hanldeAction, getTask, tasks, statistics }) => {
                     </View>
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ flex: 1, width: '100%' }}>
                         <CardCategory handler={() => navigation.navigate('Tasks', { type: 1, filter: true })} cant={statistics.Total} icon='https://image.flaticon.com/icons/png/512/1827/1827144.png' name='All' />
-
                         <CardCategory handler={() => navigation.navigate('Tasks', { type: 2, filter: true })} cant={statistics.Complete} icon='https://image.flaticon.com/icons/png/512/190/190411.png' name='Complete' />
-
-                        <CardCategory handler={() => navigation.navigate('Tasks', { type: 3, filter: true })} cant={statistics.Finished} icon='https://image.flaticon.com/icons/png/512/2314/2314433.png' name='Finished' />
                     </ScrollView>
                 </View>
             </View>
