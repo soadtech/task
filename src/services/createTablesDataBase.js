@@ -1,13 +1,13 @@
 import { database } from './db';
-import { createTableUser } from '../services/querys'
+import { createTableUser, createTableTask } from '../services/querys'
 
 const db = database.openDatabase;
 
 export const createTablesDatabase = async (force = false) => {
     if (force) {
         //await deleteTablesExisting();
-        const nameTables = ['users']
-        const createSql = [createTableUser]
+        const nameTables = ['users', 'task']
+        const createSql = [createTableUser, createTableTask]
 
         const deleteTablesArray = []
         const createTablesArray = []

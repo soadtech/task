@@ -8,12 +8,12 @@ export default function TaskList ({ data = [] }) {
             style={{ flex: 1 }}
             data={data}
             renderItem={({ item }) => (
-                <View style={styles.container}>
+                <View key={item.id} style={styles.container}>
                     <View>
                         <Text>{item.name}</Text>
                     </View>
                     <View style={{ justifyContent: 'flex-end' }}>
-                        <Text>{item.status}</Text>
+                        <Text>{item.type}</Text>
                     </View>
                 </View>
             )}
