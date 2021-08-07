@@ -18,9 +18,9 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const INITIAL_HEIGHT_MODALIZE = 140
-const Home = ({ hanldeAction }) => {
+const Home = ({ hanldeAction, getTask, tasks }) => {
     const navigation = useNavigation()
-    const [tasks, setTasks] = useState([])
+    //const [tasks, setTasks] = useState([])
     const [action, setAction] = useState(0)
     const [heightModalize, setHeightModalize] = useState(INITIAL_HEIGHT_MODALIZE)
     const modalizeRef = useRef(null);
@@ -32,14 +32,6 @@ const Home = ({ hanldeAction }) => {
     const hiddenModal = () => {
         modalizeRef.current?.close();
     }
-
-    const getTask = async () => {
-        const data = await Task.get()
-        setTasks(data)
-    }
-    useEffect(() => {
-        getTask()
-    }, [])
 
     const renderAction = (st) => {
         switch (st) {

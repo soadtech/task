@@ -58,4 +58,22 @@ export const Task = {
                 );
             });
         }),
+    completeTask: (id) =>
+        new Promise(function (resolve, reject) {
+            console.log('id', id);
+            db.transaction((tx) => {
+                tx.executeSql(
+                    queryTask.completeTask,
+                    [id],
+                    (tx, results) => {
+                        console.log(results.rows.raw());
+                        resolve(results.rows.raw())
+                    },
+                    (error) => {
+                        console.log('error', error);
+                        reject(null, error)
+                    },
+                );
+            });
+        }),
 };

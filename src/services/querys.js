@@ -20,6 +20,7 @@ export const queryTask = {
   createTask: `INSERT INTO task (name,description,type) VALUES (?,?,?)`,
   getAlltask: `SELECT * FROM task`,
   updateTask: `UPDATE task SET description = ? WHERE id=?`,
+  completeTask: `UPDATE task SET type = 2 WHERE id=?`,
   getTaskByType: `SELECT * FROM task WHERE type=?`,
   deleteTask: `DELETE FROM task WHERE id=?`
 }
