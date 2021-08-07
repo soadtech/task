@@ -8,9 +8,9 @@ const useAuth = () => {
     const getDataAuth = async () => {
         try {
             const data = await User.get();
-            if (data) {
+            if (data.length > 0) {
                 setAuthenticated(true);
-                setUser(data)
+                setUser(data[0])
             }
         } catch (error) {
             console.log(error);

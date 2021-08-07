@@ -7,10 +7,15 @@ export default function Loader ({ navigation }) {
     const { authenticated } = useAuth()
     useEffect(() => {
         createTablesDatabase(true);
-        if (!authenticated) {
+    }, [])
+    useEffect(() => {
+        if (authenticated) {
+            navigation.navigate('Home')
+        } else {
             navigation.navigate('Login')
         }
-    }, [])
+
+    }, [authenticated])
     return (
         <View>
             <Text>Loader</Text>
