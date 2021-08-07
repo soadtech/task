@@ -76,4 +76,20 @@ export const Task = {
                 );
             });
         }),
+    delete: (id) =>
+        new Promise(function (resolve, reject) {
+            db.transaction((tx) => {
+                tx.executeSql(
+                    queryTask.deleteTask,
+                    [id],
+                    (tx, results) => {
+                        resolve(results.rows.raw())
+                    },
+                    (error) => {
+                        console.log('error', error);
+                        reject(null, error)
+                    },
+                );
+            });
+        }),
 };

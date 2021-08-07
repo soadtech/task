@@ -35,7 +35,7 @@ const withTask = (Component) => {
                                 <CardTypeSaveTask handler={() => { setHeightModalize(500); setAction(1) }} text='Edit' icon='https://image.flaticon.com/icons/png/512/1827/1827933.png' />
                             </View>
                             <View>
-                                <CardTypeSaveTask handler={() => { Alert.alert('Esta seguro que desea eliminar?') }} text='Delete' icon='https://image.flaticon.com/icons/png/512/3096/3096673.png' />
+                                <CardTypeSaveTask handler={handlerDeleteTask} text='Delete' icon='https://image.flaticon.com/icons/png/512/3096/3096673.png' />
                             </View>
                         </>
                     )
@@ -55,6 +55,26 @@ const withTask = (Component) => {
             await Task.completeTask(taskSelected)
             hiddenModal()
             getTask()
+        }
+        const handlerDeleteTask = () => {
+            Alert.alert(
+                "Cuidado",
+                "¿Estás seguro que desear eliminar esta tarea?",
+                [
+                    {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                    },
+                    {
+                        text: "Yes, delete this.", onPress: async () => {
+                            await Task.delete(taskSelected)
+                            hiddenModal()
+                            getTask()
+                        }
+                    }
+                ]
+            )
         }
         return (
             <>
