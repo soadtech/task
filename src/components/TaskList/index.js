@@ -3,7 +3,6 @@ import { View, Text, FlatList } from 'react-native'
 import { styles } from './styles';
 
 export default function TaskList ({ data = [] }) {
-    console.log('dataaa', data);
     return (
         <FlatList
             style={{ flex: 1 }}
