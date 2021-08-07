@@ -9,7 +9,6 @@ import { Task } from '../services/task';
 const INITIAL_HEIGHT_MODALIZE = 140
 const withTask = (Component) => {
     function WrapperChildren (props) {
-        console.log('props', props.route.params);
         const [statistics, setStatistics] = useState({})
         const [action, setAction] = useState(0)
         const [tasks, setTasks] = useState([])

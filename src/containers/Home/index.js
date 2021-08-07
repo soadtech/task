@@ -55,7 +55,7 @@ const Home = ({ hanldeAction, getTask, tasks, statistics }) => {
     return (
         <View style={styles.container}>
             <View style={styles.containerHeader}>
-                <Header />
+                <Header total={statistics.Total} />
 
                 <View style={styles.containerCardsCategory}>
                     <View style={{ marginBottom: 20 }}>

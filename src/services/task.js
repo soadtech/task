@@ -8,13 +8,11 @@ import {
 export const Task = {
     create: ({ title, description, type }) =>
         new Promise(function (resolve, reject) {
-            console.log(title, description, type);
             db.transaction((tx) => {
                 tx.executeSql(
                     queryTask.createTask,
                     [title, description, type],
                     (tx, results) => {
-                        console.log(results.rows);
                         resolve(results.rows.length > 0)
                     },
                     (error) => {
@@ -31,7 +29,6 @@ export const Task = {
                     queryTask.getAlltask,
                     [],
                     (tx, results) => {
-                        console.log(results.rows.raw());
                         resolve(results.rows.raw())
                     },
                     (error) => {
@@ -65,7 +62,6 @@ export const Task = {
                     queryTask.getTaskByType,
                     [type],
                     (tx, results) => {
-                        console.log(results.rows.raw());
                         resolve(results.rows.raw())
                     },
                     (error) => {
@@ -77,7 +73,6 @@ export const Task = {
         }),
     completeTask: (id) =>
         new Promise(function (resolve, reject) {
-            console.log('id', id);
             db.transaction((tx) => {
                 tx.executeSql(
                     queryTask.completeTask,
@@ -95,13 +90,11 @@ export const Task = {
         }),
     updateTask: (description, id) =>
         new Promise(function (resolve, reject) {
-            console.log('id', description, id);
             db.transaction((tx) => {
                 tx.executeSql(
                     queryTask.updateTask,
                     [description, id],
                     (tx, results) => {
-                        console.log('aki se edita->', results);
                         resolve(results.rows.raw())
                     },
                     (error) => {
